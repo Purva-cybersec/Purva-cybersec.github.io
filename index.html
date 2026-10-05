@@ -1,706 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Purva Rumde — GRC, IT audit, and third-party risk</title>
+<meta name="description" content="Purva Rumde helps companies prove their security to customers and auditors. GRC, IT audit, and third-party risk work with a technical security background.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5F7F9;
+    --sheet: #FFFFFF;
+    --ink: #1D2A44;
+    --graphite: #3A4250;
+    --muted: #6A7383;
+    --rule: #D5DCE4;
+    --grid: #EDF1F5;
+    --pen: #B3261E;
+    --measure: 68ch;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--graphite);
+    font-family: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--pen); }
+  a:focus-visible { outline: 2px solid var(--pen); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
 
-    <head>
-        <meta charset="utf-8">
-        <title>Purva's Portfolio</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
+  /* Hero: ruled workpaper sheet with one red-pen annotation */
+  .hero {
+    background-color: var(--sheet);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px);
+    background-size: 100% 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero .wrap { padding-top: 72px; padding-bottom: 64px; position: relative; }
+  .who { display: flex; align-items: center; gap: 14px; margin: 0 0 36px; }
+  .who img { width: 56px; height: 56px; object-fit: cover; border-radius: 4px; border: 1px solid var(--rule); }
+  .who p { margin: 0; line-height: 1.3; }
+  .who strong { color: var(--ink); font-weight: 700; font-size: 28px; display: block; }
+  .who span { color: var(--muted); font-size: 25px; }
+  h1 {
+    color: var(--ink);
+    font-weight: 700;
+    font-size: clamp(34px, 5.6vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 17ch;
+    position: relative;
+  }
+  .note {
+    font-family: "Caveat", "Comic Sans MS", cursive;
+    color: var(--pen);
+    font-size: 26px;
+    line-height: 1.1;
+    position: absolute;
+    right: 28px;
+    top: 150px;
+    width: 190px;
+    transform: rotate(-4deg);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .note svg { width: 54px; height: 44px; overflow: visible; }
+  .note path { fill: none; stroke: var(--pen); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+  .tick { stroke-dasharray: 90; stroke-dashoffset: 90; animation: draw 0.7s 0.4s ease-out forwards; }
+  .note-text { opacity: 0; animation: appear 0.4s 1s ease-out forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes appear { to { opacity: 1; } }
+  .lede { max-width: 58ch; margin: 28px 0 0; font-size: 19px; color: var(--graphite); }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 30px; font-weight: 600; }
+  .actions a.primary {
+    background: var(--ink); color: #fff; text-decoration: none;
+    padding: 11px 18px; border-radius: 4px;
+  }
+  .actions a.primary:hover { background: var(--pen); color: #fff; }
+  .actions a:not(.primary) { padding: 11px 0; }
 
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Edu+TAS+Beginner:wght@400..700&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  /* Sections */
+  section { padding: 64px 0 8px; }
+  h2 { color: var(--ink); font-size: 26px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; }
+  .intro { max-width: var(--measure); margin: 0 0 32px; color: var(--muted); }
+  h3 { color: var(--ink); font-size: 20px; font-weight: 700; margin: 0 0 8px; line-height: 1.3; }
+  p { max-width: var(--measure); }
 
-        <!-- Icon Font Stylesheet -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  /* Featured work: workpaper sheets */
+  .sheets { display: grid; gap: 28px; }
+  .sheet {
+    background: var(--sheet);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--ink);
+    padding: 30px 32px 28px;
+  }
+  .sheet p { margin: 0 0 16px; }
+  .finding {
+    border-top: 1px dashed var(--rule);
+    padding-top: 16px;
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 6px;
+    align-items: start;
+  }
+  .finding svg { width: 24px; height: 22px; margin-top: 3px; }
+  .finding path { fill: none; stroke: var(--pen); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .finding p { margin: 0; color: var(--ink); }
+  .finding b { font-weight: 600; }
+  .sheet .more { display: inline-block; margin-top: 18px; font-weight: 600; }
 
-        <!-- Libraries Stylesheet -->
-        <link rel="stylesheet" href="lib/animate/animate.min.css"/>
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  /* Experience timeline */
+  .timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  .timeline li {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .when { color: var(--muted); font-size: 15px; padding-top: 2px; }
+  .timeline h3 { font-size: 18px; margin-bottom: 2px; }
+  .org { color: var(--muted); margin: 0 0 8px; font-size: 15px; }
+  .timeline p:last-child { margin-bottom: 0; }
 
+  /* Project lists */
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  .rows li { padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .rows a { font-weight: 600; font-size: 18px; }
+  .rows p { margin: 4px 0 0; }
+  .compact { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; border-top: 1px solid var(--rule); }
+  .compact li { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .compact a { font-weight: 600; }
+  .compact span { color: var(--muted); font-size: 15px; display: block; }
 
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+  /* Credentials */
+  .creds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .creds h3 { font-size: 17px; }
+  .creds ul { list-style: none; padding: 0; margin: 0; }
+  .creds li { padding: 6px 0; border-bottom: 1px solid var(--rule); font-size: 16px; }
+  .creds li:last-child { border-bottom: 0; }
+  .progress { color: var(--pen); font-weight: 600; }
 
-        <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+  footer { margin-top: 72px; background: var(--ink); color: #DCE3EC; }
+  footer .wrap { padding-top: 48px; padding-bottom: 48px; }
+  footer h2 { color: #fff; }
+  footer p { margin: 0 0 18px; }
+  footer a { color: #fff; }
+  footer a:hover { color: #FFB4AB; }
+  footer .actions a.primary { background: #fff; color: var(--ink); }
+  footer .actions a.primary:hover { background: #FFB4AB; color: var(--ink); }
+  .small { font-size: 14px; color: #A9B4C2; margin-top: 28px; }
 
-    <body>
+  @media (max-width: 860px) {
+    .note { position: static; transform: rotate(-3deg); margin-top: 22px; width: auto; flex-direction: row; align-items: center; gap: 10px; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 20px; }
+    .hero .wrap { padding-top: 48px; padding-bottom: 44px; }
+    .sheet { padding: 24px 20px; }
+    .timeline li { grid-template-columns: 1fr; gap: 4px; }
+    .compact, .creds { grid-template-columns: 1fr; }
+    .creds { gap: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tick { animation: none; stroke-dashoffset: 0; }
+    .note-text { animation: none; opacity: 1; }
+  }
+</style>
+</head>
+<body>
 
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+<header class="hero">
+  <div class="wrap">
+    <div class="who">
+      <img src="img/Purva.jpg" alt="Portrait of Purva Rumde" onerror="this.remove()">
+      <p><strong>Purva Rumde</strong><span>GRC, IT audit, and third-party risk</span></p>
+    </div>
+
+    <h1>I help companies prove their security to customers and auditors.</h1>
+
+    <div class="note" aria-hidden="true">
+      <svg viewBox="0 0 54 44"><path class="tick" d="M4 24 L19 38 L50 4"/></svg>
+      <span class="note-text">tested, evidence below</span>
+    </div>
+
+    <p class="lede">I'm an Information Security Compliance Analyst, working on customer security audits and third-party due diligence. I came to GRC from hands-on security work, so I can talk to engineers about how a control actually works and to auditors about whether it's proven.</p>
+
+    <div class="actions">
+      <a class="primary" href="mailto:rumde.purva21@gmail.com">Email me</a>
+      <a href="https://www.linkedin.com/in/purva-rumde/">LinkedIn</a>
+      <a href="https://github.com/Purva-cybersec">GitHub</a>
+      <a href="resume.pdf">Download résumé (PDF)</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="work">
+    <div class="wrap">
+      <h2>Work I can walk you through</h2>
+      <p class="intro">Two projects built the way the work is done in practice, with the workpapers and reasoning published in full.</p>
+
+      <div class="sheets">
+        <article class="sheet">
+          <h3>SOC 2 Type II examination, from the auditor's side</h3>
+          <p>I spend my days on the audited side of SOC 2, so I built an examination from the other side of the table. For a fictional SaaS company, I scoped Security, Availability, and Confidentiality, built a 19-control matrix mapped to the Trust Services Criteria, tested populations for completeness, sampled 52 items across access and change management, and evaluated 4 exceptions for root cause and opinion impact.</p>
+          <div class="finding">
+            <svg viewBox="0 0 24 22" aria-hidden="true"><path d="M2 12 L9 19 L22 3"/></svg>
+            <p><b>What I learned:</b> an access review that ran on time was still an exception, because the account it flagged was never removed. A control being performed isn't the same as a control working.</p>
+          </div>
+          <a class="more" href="https://github.com/Purva-cybersec/soc2-type2-audit-simulation">Read the workpapers</a>
+        </article>
+
+        <article class="sheet">
+          <h3>AI vendor risk assessment of two AI meeting assistants</h3>
+          <p>A third-party risk review of two AI note-takers for a sales team handling confidential customer data. I rated inherent risk across six factors, designed a 28-question AI due diligence questionnaire mapped to ISO/IEC 42001, the NIST AI RMF, and the EU AI Act, assessed both vendors from their public documentation, and recommended one for approval with conditions and the other for escalation.</p>
+          <div class="finding">
+            <svg viewBox="0 0 24 22" aria-hidden="true"><path d="M2 12 L9 19 L22 3"/></svg>
+            <p><b>What I learned:</b> one vendor's promise not to train on customer data covered generative models only. In vendor risk, the exact wording of a commitment is where the risk hides.</p>
+          </div>
+          <a class="more" href="https://github.com/Purva-cybersec/AI-vendor-risk-assessment">Read the assessment</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <p class="intro">Compliance and access control work across a global software company and a university.</p>
+      <ol class="timeline">
+        <li>
+          <div class="when">Aug 2025 – Present</div>
+          <div>
+            <h3>Information Security Compliance Analyst</h3>
+            <p class="org">SAP America, Customer Security Audit team</p>
+            <p>I execute IT general controls assessments across SAP cloud environments against SOC 2, ISO 27001, and ITGC frameworks, and act as the liaison between enterprise customers' auditors and internal security teams for GDPR audit-rights engagements. I track control gaps to closure in Jira, built Power BI compliance dashboards, and led a team session on the EU Cyber Resilience Act.</p>
+          </div>
+        </li>
+        <li>
+          <div class="when">Jan 2025 – May 2025</div>
+          <div>
+            <h3>Information Governance &amp; Risk Assistant</h3>
+            <p class="org">Florida State University, Electrical &amp; Computer Engineering</p>
+            <p>Administered records and access control workflows in ArcherGRC and consolidated departmental governance data into a central risk registry, replacing spreadsheet-based tracking.</p>
+          </div>
+        </li>
+        <li>
+          <div class="when">May 2024 – Aug 2024</div>
+          <div>
+            <h3>Cybersecurity Research Lead</h3>
+            <p class="org">FAMU-FSU College of Engineering</p>
+            <p>Led a team of three undergraduate students implementing DES encryption on FPGA hardware, including threat modeling and secure development guidance.</p>
+          </div>
+        </li>
+        <li>
+          <div class="when">Oct 2023 – Dec 2024</div>
+          <div>
+            <h3>Data Security &amp; Access Control Analyst</h3>
+            <p class="org">Florida State University, Office of Admissions</p>
+            <p>Enforced FERPA-aligned access controls over sensitive student records in Slate CRM and built data validation checks that reduced manual errors by 30%.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="grc">
+    <div class="wrap">
+      <h2>More GRC and risk work</h2>
+      <p class="intro">Control testing, threat modeling, policy, and risk-based prioritization.</p>
+      <ul class="rows">
+        <li>
+          <a href="https://github.com/Purva-cybersec/SOX-ITGC-Control-Testing-Simulation">SOX ITGC control testing simulation</a>
+          <p>Tested 15 IT general controls across access, change management, and computer operations, with a risk register, remediation tracker, and executive summary.</p>
+        </li>
+        <li>
+          <a href="https://github.com/Purva-cybersec/Pinterest-Threat-Modelling">Pinterest threat model and risk register</a>
+          <p>STRIDE threat modeling mapped to NIST CSF controls, with a risk register of control gaps and mitigation recommendations.</p>
+        </li>
+        <li>
+          <a href="https://github.com/Purva-cybersec/Phishing-Prevention-Policy">Phishing prevention policy for a small business</a>
+          <p>A phishing prevention policy and awareness program aligned to NIST CSF and ISO 27001.</p>
+        </li>
+        <li>
+          <a href="https://github.com/Purva-cybersec/cve-triage-dashboard">CVE triage and patch prioritization</a>
+          <p>A Python pipeline that pulls NIST NVD data, ranks vulnerabilities by severity and exploitability, and assigns remediation deadlines by risk tier.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="technical">
+    <div class="wrap">
+      <h2>Technical foundation</h2>
+      <p class="intro">Before GRC, I worked hands-on in security. It's why I can read the logs behind an audit finding and ask engineers the right follow-up questions.</p>
+      <ul class="compact">
+        <li><a href="https://github.com/Purva-cybersec/soc-incident-simulation">SOC incident simulation</a><span>Investigating suspicious logins with Splunk and Wireshark</span></li>
+        <li><a href="https://github.com/Purva-cybersec/malware-detection-rule-development">Malware detection rules</a><span>YARA rules for suspicious PowerShell and credential dumping</span></li>
+        <li><a href="https://github.com/Purva-cybersec/NotPetya-Ransomware">NotPetya ransomware analysis</a><span>Static and behavioral analysis in an isolated lab</span></li>
+        <li><a href="https://github.com/Purva-cybersec/Finetuning-CodeBERT-for-Web-Vulnerabilities">Fine-tuning CodeBERT for web vulnerabilities</a><span>Classifying SQL injection, XSS, and command injection</span></li>
+        <li><a href="https://github.com/Purva-cybersec/Malware-Analysis">Malware analysis labs</a><span>Hands-on analysis exercises</span></li>
+        <li><a href="https://github.com/Purva-cybersec/SEED-Labs">SEED Labs</a><span>Buffer overflow, Spectre, race condition, and XSS labs</span></li>
+        <li><a href="https://github.com/Purva-cybersec/CTF-Challenges">CTF challenges</a><span>Cryptography, web, forensics, and binary exploitation</span></li>
+        <li><a href="https://github.com/Purva-cybersec/Cryptography">Cryptography</a><span>Implementations and exercises</span></li>
+        <li><a href="https://github.com/Purva-cybersec/demo-gitaction">CI/CD pipeline with GitHub Actions</a><span>Automated HTML validation and deployment to GitHub Pages</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="credentials">
+    <div class="wrap">
+      <h2>Credentials</h2>
+      <div class="creds">
+        <div>
+          <h3>Certifications</h3>
+          <ul>
+            <li>CompTIA Security+ (SY0-701)</li>
+            <li>ISO/IEC 42001 AI Management Systems training, 12 CPEs (Schellman)</li>
+            <li>arcX Foundation Threat Intelligence Analyst</li>
+            <li>PwC Cybersecurity Consulting Simulation (Forage)</li>
+            <li><span class="progress">In progress:</span> CISA</li>
+          </ul>
         </div>
-        <!-- Spinner End -->
-
-
-       
-
-        <!-- Header Start -->
-        <div class="container-fluid" id="pigraHome">
-            <div class="container">
-                <div class="row g-0">
-                    <div class="col-12 col-lg-3">
-                        <div class="header-content bg-dark h-100 pt-6 pe-6 pb-6">
-                            <a href="index.html" class="navbar-brand d-inline-flex pb-5 wow fadeInUp" data-wow-delay="0.1s">
-                                
-                            </a>
-                            <div class="text-start d-flex flex-column justify-content-center wow fadeInUp" data-wow-delay="0.3s">
-                                <p class="text-white sub-title">👋 Hello I'm Purva </p>
-                                <h1 class="display-6 text-white mb-0">Cyber Security Professional Based in USA</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-9">
-                        <div class="header-img d-flex h-100 pt-6 ps-6 pb-6">
-                            <div class="row g-5">
-                                <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
-                                    <div class="bg-light p-4" style="border-radius: 68% 32% 100% 0% / 0% 75% 25% 100%;">
-                                        <img src="img/Purva.jpg" class="img-fluid w-100" style="border-radius: 68% 32% 100% 0% / 0% 75% 25% 100%;" alt="Image">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.3s">
-                                    <h1 class="display-6 mb-4">Aspiring Cybersecurity Professional</h1>
-                                    <p class="mb-4">I am an enthusiastic cybersecurity graduate student with a keen interest in protecting systems and data from evolving threats. My journey into cybersecurity has been fueled by my passion for problem-solving and staying ahead of emerging technologies.
-                                    </p>
-                                    <div class="d-flex align-items-center mb-2">
-                                        <i class="fas fa-map-marker-alt text-primary me-3"></i>
-                                        <p class="text-dark mb-0">Florida, USA</p>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-2">
-                                        <i class="fas fa-envelope text-primary me-3"></i>
-                                        <p class="text-dark mb-0">rumde.purva21@gmail.com</p>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-2">
-                                        <i class="fa fa-phone-alt text-primary me-3"></i>
-                                        <p class="text-dark mb-0">+1 850-966-2894</p>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-4">
-                                        <i class="fab fa-firefox-browser text-primary me-3"></i>
-                                        <a href="https://www.linkedin.com/in/purva-rumde/" class="text-dark mb-0">www.linkedin.com/in/purva-rumde</a>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div>
+          <h3>Education</h3>
+          <ul>
+            <li>M.S. Cybersecurity, Florida State University, 2025</li>
+            <li>B.E. Information Technology, University of Mumbai, 2023</li>
+          </ul>
         </div>
-        <!-- Header End -->
-
-
-        <!-- About Start -->
-        <div class="container-fluid" id="About">
-            <div class="container">
-                <div class="row g-0">
-                    <div class="col-12 col-lg-3">
-                        <div class="about-header bg-dark h-100 pt-6 pe-6 pb-6">
-                            <div class="text-start d-flex flex-column justify-content-center wow fadeInUp" data-wow-delay="0.1s">
-                                <p class="text-white sub-title">About Me</p>
-                                <h1 class="display-6 text-white mb-0">Get to know about me, from me.</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-9">
-                        <div class="about-content h-100 pt-6 ps-6 pb-6">
-                            <div class="row g-5">
-                                <div class="col-xl-5">
-                                    <div class="about-img bg-light p-4 wow fadeInUp" data-wow-delay="0.1s">
-                                        <img src="img/ifly.jpg" class="img-fluid w-100"  style="width: 30%; height: 50%;" alt="Image">
-                                        <div class="sosial-icon">
-                                            <a class="btn btn-primary btn-sm-square mb-0" href="https://www.linkedin.com/in/purva-rumde/"><i class="fab fa-linkedin-in text-white"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-7 wow fadeInUp" data-wow-delay="0.3s">
-
-                                    <p class="mb-4">I am a master’s student in cybersecurity with a strong passion for securing digital landscapes and solving real-world challenges. Beyond academics, I thrive on creativity and collaboration, whether it's tackling a cybersecurity project or enjoying activities that spark joy and adventure.
-
-                                        With a solid foundation in IT and an eagerness to learn, I am honing my skills in areas like network security, ethical hacking, and risk assessment. My academic journey has been complemented by hands-on experiences, such as fine-tuning machine learning models for vulnerability detection and analyzing ransomware.
-                                        
-                                        When I’m not immersed in my studies or certifications like CompTIA Security+, you can find me exploring new hobbies, sharing laughter with friends, or engaging in activities that keep life exciting. I believe in combining technical expertise with a zest for life to create meaningful, impactful work in cybersecurity.
-                                        
-                                        
-                                    
-                                    </div>
-                                    <a href="https://drive.google.com/file/d/1OWMonnQyqT57mefA3B2_FE0XwQFcf-Q-/view?usp=sharing" class="btn btn-primary py-2 px-4"> <i class="fas fa-download me-2"></i>Download My Resume</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div>
+          <h3>Publication</h3>
+          <ul>
+            <li><a href="https://www.irjet.net/archives/V9/i4/IRJET-V9I4283.pdf">HEALTHCHAIN</a>: a patient-centric blockchain application for electronic health records. IRJET, April 2022.</li>
+          </ul>
         </div>
-        <!-- About End -->
+      </div>
+    </div>
+  </section>
 
+  <section id="beyond">
+    <div class="wrap">
+      <h2>Beyond work</h2>
+      <p>I volunteer with <strong>Children Need Parents</strong>, a nonprofit, where I wear many hats and lead much of the IT work. It's the same instinct behind my projects: if something needs doing, I'd rather build it than wait for it.</p>
+    </div>
+  </section>
+</main>
 
-        <!-- Education Start -->
-        <div class="container-fluid">
-            <div class="container">
-                <div class="row g-0">
-                    <div class="col-lg-3">
-                        <div class="education-header bg-dark h-100 pt-6 pe-6 pb-6">
-                            <div class="text-start d-flex flex-column justify-content-center wow fadeInUp" data-wow-delay="0.1s">
-                                <p class="text-white sub-title">Education</p>
-                                <h1 class="display-6 text-white mb-0">Academic Qualification</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="education-content h-100 pt-6 ps-6 pb-6">
-                            <div class="row g-4">
-                                <div class="col-12">
-                                    <div class="education-item rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.1s">
-                                        <div class="d-flex align-items-center mb-3">
-                                            <p class="fs-5 mb-0 me-4">Florida State University, USA</p>
-                                            <div>
-                                                <span class="fa fa-calendar me-1"></span> 2023 - 2025 &nbsp; &nbsp;
-                                            </div> 
-                                            <div>
-                                                <span class="fa fa-arrow-right"></span>  3.5 CGPA
-                                            </div>
-                                        </div>
-                                        <h4 class="mb-3">Master's in Cyber Security</h4>
-                                        <p class="mb-0">"Pursuing advanced knowledge in cybersecurity, focusing on areas such as network security, risk assessment, and ethical hacking. Gained hands-on experience through projects and research, preparing for industry certifications like CompTIA Security+."
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="education-item rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.3s">
-                                        <div class="d-flex align-items-center mb-3">
-                                            <p class="fs-5 mb-0 me-4">Mumbai University, IND</p>
-                                            <div>
-                                                <span class="fa fa-calendar me-1"></span> 2020 - 2023 &nbsp; &nbsp;
-                                            </div> 
-                                            <div>
-                                                <span class="fa fa-arrow-right"></span>  3.7 CGPA
-                                            </div>
-                                        </div>
-                                        <h4 class="mb-3">Bachelor's of Engineering in Informaton Technology</h4>
-                                        <p class="mb-0">"Built a strong foundation in IT principles, including software development, database management, and networking. Completed a capstone project on Algorithmic Trading"
+<footer>
+  <div class="wrap">
+    <h2>Let's talk</h2>
+    <p>I'm looking for GRC, IT audit, security assurance, and third-party risk roles. Email is the best way to reach me, and I'm happy to walk through any of the work above.</p>
+    <div class="actions">
+      <a class="primary" href="mailto:rumde.purva21@gmail.com">Email me</a>
+      <a href="https://www.linkedin.com/in/purva-rumde/">LinkedIn</a>
+      <a href="https://github.com/Purva-cybersec">GitHub</a>
+    </div>
+    <p class="small">Based in Florida and open to relocation.</p>
+  </div>
+</footer>
 
-
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="education-item rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.5s">
-                                        <div class="d-flex align-items-center mb-3">
-                                            <p class="fs-5 mb-0 me-4">Shri Bhagubhai Mafatlal Polytechnic, IND</p>
-                                            <div>
-                                                <span class="fa fa-calendar me-1"></span> 2017 - 2020 &nbsp; &nbsp;
-                                            </div> 
-                                            <div>
-                                                <span class="fa fa-arrow-right"></span>  3.5 CGPA
-                                            </div>
-                                        </div>
-                                        <h4 class="mb-3">Diploma in Information Technology</h4>
-                                        <p class="mb-0">"Introduced to core IT concepts, including programming, hardware basics, and system administration. Laid the groundwork for advanced studies in technology and security domains."
-
-
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Education End -->
-
-        <!-- Experience Start -->
-        <div class="container-fluid">
-            <div class="container">
-                <div class="row g-0">
-                    <div class="col-lg-3">
-                        <div class="experience-header bg-dark h-100 pt-6 pe-6 pb-6">
-                            <div class="text-start d-flex flex-column justify-content-center wow fadeInUp" data-wow-delay="0.1s">
-                                <p class="text-white sub-title">Relevent Work Experience</p>
-                                <h1 class="display-6 text-white mb-0">Practical Experience</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="experience-content h-100 pt-6 ps-6 pb-6">
-                            <div class="row g-4">
-                                <div class="col-12">
-                                    <div class="experience-item rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.1s">
-                                        
-                                        <a href="https://drive.google.com/file/d/1hDD_eRMQrjRnU7ZTZUf46qYHlgsUQCnt/view?usp=sharing"><h4 class="mb-3">Graduate Research Mentor</h4></a>
-                                        <span class="fa fa-calendar me-1"></span> May 2024 - August 2024
-                                        <p class="mb-3">ECE Summer Program, FAMU-FSU College of Engineering, USA</p>
-                                        <p class="mb-0">- Guided a team of 3 students in implementing the DES algorithm in hardware, reducing debugging time by 30% through mentoring and structured code reviews.<br>
-- Conducted trend analysis and identified optimization opportunities in hardware implementation, improving system performance by 20%.<br>
-- Presented findings on cryptographic hardware design at a departmental seminar, showcasing real-world applications of DES encryption.<br>
-- Documented a comprehensive implementation guide to support future research in incident response hardware solutions.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="experience-item rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.3s">
-                                        <a href="https://drive.google.com/file/d/1iHYWEv2yZzxMvn23C-tIbNdfO2wmzqTV/view?usp=sharing"><h4 class="mb-3">Technical Research Writer Intern</h4></a> 
-                                        <span class="fa fa-calendar me-1"></span> March 2021 - May 2021
-                                        <p class="mb-3">Gossipfunda, India</p>
-                                        <p class="mb-0">- Authored 10+ technical articles addressing IT and cybersecurity challenges, resulting in a 20% increase in readership engagement. <br>
-- Simplified incident response techniques and troubleshooting steps into actionable guides, enhancing resolution times by 20%. <br>
-- Researched emerging security trends, contributing to the platform's credibility and user engagement. <br>
-                                            
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="experience-item rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.5s">
-                                        <a href="https://drive.google.com/file/d/1ZlhkHT9Hj-Tpd8q2hMAN62p4NUP0HJTb/view?usp=sharing"><h4 class="mb-3">Security Analysis Intern</h4></a> 
-                                        <span class="fa fa-calendar me-1"></span> March 2021 - May 2019
-                                        <p class="mb-3">L&T Project Kaushalya, Mumbai, India</p>
-                                        <p class="mb-0">- Conducted security analysis for encryption techniques (steganography, AES, DES), achieving a 25% improvement in data encryption efficiency.<br>
-- Assisted in developing cryptographic algorithms to support secure incident response measures.<br>
-- Leveraged tools like PGP and GPG to secure communication channels, aligning with cybersecurity best practices.<br>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Exparience End -->
-
-                <!-- Service Start -->
-                <div class="container-fluid" id="pigraService">
-                    <div class="container">
-                        <div class="row g-0">
-                            <div class="col-lg-3">
-                                <div class="service-header h-100 bg-dark pt-6 pe-6 pb-6">
-                                    <div class="text-start d-flex flex-column justify-content-center wow fadeInUp" data-wow-delay="0.1s">
-                                        <p class="text-white sub-title">My Relevent Projects</p>
-                                        <h1 class="display-6 text-white mb-0">Learning Experience</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="service-content h-100 pt-6 ps-6 pb-6">
-                                    <div class="row g-4">
-                                        <div class="col-12">
-                                            <div class="service-item p-4 wow fadeInUp" data-wow-delay="0.1s">
-                                                <div class="row g-4 align-items-center">
-                                                    <div class="col-xl-2">
-                                                        <i class="fa fa-terminal fa-3x"></i>
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <a href="https://github.com/Purva-cybersec/NotPetya-Ransomware/tree/main" class="h4 mb-0">Analyzing NotPetya Ransomware</a>
-                                                    </div>
-                                                    <div class="col-xl-4">
-                                                        <p class="mb-0">Description: <br>
-                                                            Investigated the destructive NotPetya ransomware that caused widespread damage in June 2017. <br>
-                                                            Key Achievements: <br>
-                                                            
-                                                            Set up a controlled environment to analyze the ransomware's behavior.
-                                                            Utilized various tools to study its execution and impact.
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <p><i class="fa fa-check me-2"></i> ProcMon</p>
-                                                        <p><i class="fa fa-check me-2"></i> ProcessHacker</p>
-                                                        <p><i class="fa fa-check me-2"></i> Regshot</p>
-                                                        <p class="mb-0"><i class="fa fa-check me-2"></i> IDA Pro</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="service-item p-4 wow fadeInUp" data-wow-delay="0.3s">
-                                                <div class="row g-4 align-items-center">
-                                                    <div class="col-xl-2">
-                                                        <i class="fas fa-laptop-code fa-3x"></i>
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <a href="https://github.com/Purva-cybersec/Finetuning-CodeBERT-for-Web-Vulnerabilities" class="h4 mb-0">Fine-Tuning CodeBERT for Web Vulnerabilities</a>
-                                                    </div>
-                                                    <div class="col-xl-4">
-                                                        <p class="mb-0">Description: <br>
-                                                            Fine-tuned the CodeBERT pre-trained language model to classify web vulnerabilities with high accuracy. <br>
-                                                            Key Achievements: <br>
-                                                            
-                                                            Achieved a 90% accuracy rate when testing the model on text-based code snippets from CTF challenges.
-                                                            Advanced the use of machine learning for cybersecurity applications.
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <p><i class="fa fa-check me-2"></i> CodeBERT</p>
-                                                        <p><i class="fa fa-check me-2"></i> Machine Learning</p>
-                                                        <p><i class="fa fa-check me-2"></i> CTF</p>
-                                                        <p class="mb-0"><i class="fa fa-check me-2"></i> Python</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="service-item p-4 wow fadeInUp" data-wow-delay="0.5s">
-                                                <div class="row g-4 align-items-center">
-                                                    <div class="col-xl-2">
-                                                        <i class="fa fa-address-card fa-3x"></i>
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <a href="https://drive.google.com/file/d/1j1dD2311IL20Fq31Oa_MwpwNwNSl2C4F/view?usp=sharing" class="h4 mb-0">Blockchain-Based Video KYC Platform (KYeasy)
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-xl-4">
-                                                        <p class="mb-0">Description:<br>
-                                                            Developed a decentralized platform to simplify the video KYC process for multiple banks. <br>
-                                                            Key Achievements: <br>
-                                                            
-                                                            Enabled users to complete the KYC process once and reuse the details for multiple bank accounts.
-                                                            Built a secure, scalable solution using blockchain and a variety of technologies.
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <p><i class="fa fa-check me-2"></i> Hyperledger Fabric</p>
-                                                        <p><i class="fa fa-check me-2"></i> IPFS</p>
-                                                        <p class="mb-0"><i class="fa fa-check me-2"></i>WhatsApp Bot</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="service-item p-4 wow fadeInUp" data-wow-delay="0.3s">
-                                                <div class="row g-4 align-items-center">
-                                                    <div class="col-xl-2">
-                                                        <i class="fa fa-file fa-3x"></i>
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <a href="https://www.youtube.com/watch?v=icc24YsjyvY" class="h4 mb-0">Blockchain-Based Web Application (HEALTHCHAIN)</a>
-                                                    </div>
-                                                    <div class="col-xl-4">
-                                                        <p class="mb-0">Description: <br>
-                                                            Designed a decentralized platform for patients to securely store medical records and consult with doctors. <br>
-                                                            Key Achievements: <br>
-                                                            
-                                                            Enhanced data security and privacy in healthcare using blockchain technology.
-                                                            Published a research paper on the project in IRJET.
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-xl-3">
-                                                        <p><i class="fa fa-check me-2"></i> BigChainDB</p>
-                                                        <p><i class="fa fa-check me-2"></i> IPFS</p>
-                                                        <p class="mb-0"><i class="fa fa-check me-2"></i> MongoDB</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Service End -->
-
-        <!-- Skills Start -->
-        <div class="container-fluid">
-            <div class="container">
-                <div class="row g-0">
-                    <div class="col-lg-3">
-                        <div class="skills-header h-100 bg-dark pt-6 pe-6 pb-6">
-                            <div class="text-start d-flex flex-column justify-content-center wow fadeInUp" data-wow-delay="0.1s">
-                                <p class="text-white sub-title">Skills</p>
-                                <h1 class="display-6 text-white mb-0">My expertise skills</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="skills-content h-100 pt-6 ps-6 pb-6">
-                            <div class="row g-4">
-                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                    <div class="skills-item text-center rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.1s">
-                                        <div class="text-primary text-center mb-3"><span class="fas fa-mask fa-2x"></span></div>
-                                        <div class="counter-counting d-flex justify-content-center">
-                                            
-                                        </div>
-                                        <a href= "https://github.com/Purva-cybersec/Malware-Analysis"><p class="mb-3">Malware Analysis</p></a>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                    <div class="skills-item text-center rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.3s">
-                                        <div class="text-primary text-center mb-3"><span class="fas fa-flag fa-2x"></span></div>
-                                        <div class="counter-counting d-flex justify-content-center">
-                                            
-                                        </div>
-                                        <a href= "https://github.com/Purva-cybersec/CTF-Challenges"><p class="mb-3">CTF</p></a>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                    <div class="skills-item text-center rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.5s">
-                                        <div class="text-primary text-center mb-3"><span class="fas fa-key fa-2x"></span></div>
-                                        <div class="counter-counting d-flex justify-content-center">
-                                           
-                                        </div>
-                                        <a href= "https://github.com/Purva-cybersec/Cryptography"><p class="mb-3">Crytography</p></a>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                    <div class="skills-item text-center rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.7s">
-                                        <div class="text-primary text-center mb-3"><span class="fas fa-file-code fa-2x"></span></div>
-                                        <div class="counter-counting d-flex justify-content-center">
-                                            
-                                        </div>
-                                        <a href= "https://github.com/Purva-cybersec/secure-docker-app"><p class="mb-3">DevSecOps</p></a>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                    <div class="skills-item text-center rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.1s">
-                                        <div class="text-primary text-center mb-3"><span class="fas fa-user-secret fa-2x"></span></div>
-                                        <div class="counter-counting d-flex justify-content-center">
-                                           
-                                        </div>
-                                        <a href= "https://github.com/Purva-cybersec/SEED-Labs"><p class="mb-3">SEEDLabs</p></a>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                    <div class="skills-item text-center rounded p-4 h-100 wow fadeInUp" data-wow-delay="0.3s">
-                                        <div class="text-primary text-center mb-3"><span class="fab fa-python fa-2x"></span></div>
-                                        <div class="counter-counting d-flex justify-content-center">
-                                            
-                                        </div>
-                                        <a href= "https://github.com/Purva-cybersec/Weakly-Supervised-Object-Detection-using-Deep-Learning"><p class="mb-3">Deep Learning</p></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Skills End -->
-
-
-
-
-
-        <!-- Portfolio Start -->
-        <div class="container-fluid">
-            <div class="container">
-                <div class="row g-0">
-                    <div class="col-lg-3">
-                        <div class="portfolio-header h-100 bg-dark pt-6 pe-6 pb-6">
-                            <div class="text-start d-flex flex-column justify-content-center wow fadeInUp" data-wow-delay="0.1s">
-                                <p class="text-white sub-title">Accomplishments</p>
-                                <h1 class="display-6 text-white mb-0">My Certifications, Publications</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="portfolio-content h-100 pt-6 ps-6 pb-6">
-                            <div class="portfolio-item py-5 border-bottom wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-xl-6">
-                                        <h4 class="text-body">CompTIA Security+</h4>
-                                        <h1 class="display-6 mb-0">Certified Security Professional</h1>
-                                    </div>
-                                    <div class="col-9 col-xl-4">
-                                        <div class="portfolio-img">
-                                            <div class="portfolio-img-inner">
-                                                <img src="img/CompTIA.jpg" class="img-fluid" alt="Image">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-3 col-xl-2">
-                                        <div class="view-img">
-                                            <a href="img/CompTIA.jpg" class="btn btn-primary btn-lg-square"  data-lightbox="Portfolio-1"><i class="fas fa-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                              <div class="portfolio-item py-5 border-bottom wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-xl-6">
-                                        <h4 class="text-body">arcX</h4>
-                                        <h6 class="display-6 mb-0">Threat Intelligence Analyst (FTIA) certification.</h6>
-                                    </div>
-                                    <div class="col-9 col-xl-4">
-                                        <div class="portfolio-img">
-                                            <div class="portfolio-img-inner">
-                                                <img src="img/threatintel.jpeg" class="img-fluid" alt="Image">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-3 col-xl-2">
-                                        <div class="view-img">
-                                            <a href="img/threatintel.jpeg" class="btn btn-primary btn-lg-square"  data-lightbox="portfolio-2"><i class="fas fa-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="portfolio-item py-5 border-bottom wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-xl-6">
-                                        <h4 class="text-body">IRJET Journal</h4>
-                                        <a href="https://www.irjet.net/archives/V9/i4/IRJET-V9I4283.pdf"><h6 class="display-6 mb-0">HEALTHCHAIN: A Patient Centric Blockchain Based Web Application
-                                            For Maintaining Electronic Healthcare Records.</h6></a>
-                                    </div>
-                                    <div class="col-9 col-xl-4">
-                                        <div class="portfolio-img">
-                                            <div class="portfolio-img-inner">
-                                                <img src="img/IRJET_Certifcate.jpg" class="img-fluid" alt="Image">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-3 col-xl-2">
-                                        <div class="view-img">
-                                            <a href="img/IRJET_Certifcate.jpg" class="btn btn-primary btn-lg-square"  data-lightbox="portfolio-2"><i class="fas fa-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="portfolio-item py-5 wow fadeInUp" data-wow-delay="0.5s">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-xl-6">
-                                        <h4 class="text-body">Dare-2-Compete</h4>
-                                        <h1 class="display-6 mb-0">National Level Blockchain Challenge B-plan FUNGIBLE </h1>
-                                        <h4> Runner-up</h4>
-                                    </div>
-                                    <div class="col-9 col-xl-4">
-                                        <div class="portfolio-img">
-                                            <div class="portfolio-img-inner">
-                                                <img src="img/purva-certificate.jpg" class="img-fluid" alt="Image">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-3 col-xl-2">
-                                        <div class="view-img">
-                                            <a href="img/purva-certificate.jpg" class="btn btn-primary btn-lg-square"  data-lightbox="portfolio-3"><i class="fas fa-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio End -->
-
-
-       
-
-
-        
-
-
-        <!-- Contact Start -->
-        <div class="container-fluid" id="pigraContact">
-            <div class="container">
-                <div class="row g-0">
-                    <div class="col-lg-3">
-                        <div class="contact-header h-100 bg-dark pt-6 pe-6 pb-6">
-                            <div class="text-start d-flex flex-column justify-content-center wow fadeInUp" data-wow-delay="0.1s">
-                                <p class="text-white sub-title">Contact Me</p>
-                                <h1 class="display-6 text-white mb-0">Eager to Learn and Work Together </h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                       <div class="contact-content h-100 pt-6 ps-6 pb-6">
-                            <div class="bg-light p-4">
-                                <div class="row g-5">
-                                    <div class="col-xl-5 wow fadeInUp" data-wow-delay="0.1s">
-                                        <p class="mb-4">Feel Free to reach out to me here.</p>
-                                        <div class="d-flex mb-4">
-                                            <div class="btn-xl-square bg-primary text-white me-3">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                            </div>
-                                            <div>
-                                                <h4>Address</h4>
-                                                <p class="mb-0">Tallahassee, Florida</p>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex mb-4">
-                                            <div class="btn-xl-square bg-primary text-white me-3">
-                                                <i class="fas fa-envelope"></i>
-                                            </div>
-                                            <div>
-                                                <h4>Mail Me</h4>
-                                                <p class="mb-0">rumde.purva21@gmail.com</p>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex">
-                                            <div class="btn-xl-square bg-primary text-white me-3">
-                                                <i class="fa fa-phone-alt"></i>
-                                            </div>
-                                            <div>
-                                                <h4>Telephone</h4>
-                                                <p class="mb-0">+1 850-966-2894</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                       </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Contact End -->
-
-
-        <!-- Footer Start -->
-        <div class="container-fluid footer bg-dark border-bottom-0">
-            <div class="container wow fadeIn" data-wow-delay="0.1s">
-                <div class="row g-0">
-                    <div class="col-12">
-                       <div class="footer-content h-100 pt-6 ps-6 pb-6">
-                            <div class="row g-4 align-items-center">
-                                <div class="col-12 text-center">
-                                    <div class="d-flex justify-content-center">
-                                       
-                                        <a class="btn btn-light btn-md-square me-0" href="https://www.linkedin.com/in/purva-rumde/"><i class="fab fa-linkedin-in"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-12 text-center">
-                                    <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-body me-2"></i>Purva-Rumde</a>, All right reserved.</span>
-                                </div>
-                                <div class="col-12 text-center text-body">
-                                    <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                                    <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                                    <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-
-                                </div>
-                            </div>
-                       </div>        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
-
-        
-        <!-- JavaScript Libraries -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        
-
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
-    </body>
-
+</body>
 </html>
